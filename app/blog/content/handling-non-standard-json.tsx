@@ -73,13 +73,13 @@ export default function HandlingNonStandardJson() {
       <figure className="space-y-2">
         <Image
           src="/blog/other-tool-rejects-js-style-json.png"
-          alt="Another JSON tool rejecting the same JavaScript-style object as invalid"
+          alt="jsonformatter.org rejecting the same JavaScript-style object as invalid"
           width={2416}
           height={774}
           className="h-auto w-full rounded-xl border border-slate-200 dark:border-slate-700/60"
         />
         <figcaption className="text-center text-sm text-slate-500 dark:text-slate-400">
-          A typical formatter — rejects the same input as invalid JSON.
+          jsonformatter.org — rejects the same input as invalid JSON.
         </figcaption>
       </figure>
 
