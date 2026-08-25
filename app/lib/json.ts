@@ -21,12 +21,22 @@ export function parseJson(input: string): ParseResult {
   }
 }
 
-export function beautify(value: unknown, indent = 2): string {
-  return JSON.stringify(value, null, indent);
+export function sortValue(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(sortValue);
+  if (value !== null && typeof value === "object") {
+    const out: Record<string, unknown> = {};
+    Object.keys(value as Record<string, unknown>)
+      .sort()
+      .forEach((k) => {
+        out[k] = sortValue((value as Record<string, unknown>)[k]);
+      });
+    return out;
+  }
+  return value;
 }
 
-export function minify(value: unknown): string {
-  return JSON.stringify(value);
+export function beautify(value: unknown, indent = 2, sortKeys = false): string {
+  return JSON.stringify(sortKeys ? sortValue(value) : value, null, indent);
 }
 
 export type TokenType =

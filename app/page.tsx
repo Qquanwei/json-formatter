@@ -1,81 +1,148 @@
+import Image from "next/image";
 import JsonFormatter from "./components/JsonFormatter";
+import { SITE_NAME } from "./lib/site";
+import heroImg from "../hero.jpeg";
+
+const faqs = [
+  {
+    q: "What is a JSON formatter?",
+    a: "A JSON formatter takes raw or compact JSON and reformats it with indentation and line breaks so it is easy to read. JSONGuy also validates the structure and highlights syntax errors with their exact line and column.",
+  },
+  {
+    q: "How do I format JSON online?",
+    a: "Paste your JSON into the input box and click the Beautify button between the two panes. JSONGuy pretty-prints the JSON in the output pane, and you can use the tree view to navigate nested objects and arrays.",
+  },
+  {
+    q: "Can I format JavaScript-style JSON?",
+    a: "Yes. JSONGuy supports relaxed JavaScript object syntax (JSON5), including unquoted keys, single-quoted strings, trailing commas, and line or block comments. It normalizes them into standard JSON.",
+  },
+  {
+    q: "How do I validate JSON?",
+    a: "Click Validate, or rely on the live status bar at the bottom of the tool. Invalid input is reported immediately with the error message and the offending line and column.",
+  },
+  {
+    q: "Is my JSON data sent to a server?",
+    a: "No. All formatting and validation runs locally in your browser. Your JSON is never uploaded or stored on a server.",
+  },
+  {
+    q: "What makes JSONGuy a modern JSON formatter?",
+    a: "Unlike legacy formatters, JSONGuy is built for modern JavaScript. It understands relaxed JSON5 syntax (unquoted keys, single quotes, trailing commas, comments), offers GitHub-style syntax highlighting, a collapsible tree view, live validation, and runs entirely in your browser with no server round-trips.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
 
 export default function Home() {
   return (
-    <div className="flex flex-1 flex-col bg-white dark:bg-black">
-      <header className="border-b border-zinc-200 dark:border-zinc-800">
-        <div className="mx-auto w-full max-w-6xl px-4 py-6 text-center">
-          <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-            JSON Formatter
+    <div className="flex flex-1 flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        <Image
+          src={heroImg}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-slate-950/55" />
+        <div className="relative mx-auto w-full max-w-6xl px-4 py-24 text-center sm:px-6 sm:py-32">
+          <h1 className="mx-auto max-w-3xl text-3xl font-bold tracking-tight text-white drop-shadow-lg sm:text-4xl md:text-5xl">
+            Modern Online JSON Formatter, Validator &amp; Beautifier
           </h1>
-          <p className="mx-auto mt-2 max-w-2xl text-zinc-600 dark:text-zinc-400">
-            Free online JSON formatter, validator, and beautifier. Supports
-            JavaScript-style JSON — unquoted keys, single quotes, trailing
-            commas, and comments.
+          <p className="mx-auto mt-5 max-w-2xl text-base text-slate-100 drop-shadow sm:text-lg">
+            {SITE_NAME} is a modern JSON formatter that pretty-prints and
+            validates JSON in your browser — with syntax highlighting and a
+            collapsible tree view. Supports JavaScript-style JSON (comments,
+            unquoted keys, trailing commas). 100% client-side, no sign-up
+            required.
           </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-xs font-medium text-white">
+            {["Modern JSON Formatter", "JSON Validator", "JSON Beautifier", "JSON5 Support", "JSON Tree View"].map(
+              (t) => (
+                <span
+                  key={t}
+                  className="rounded-full border border-white/25 bg-white/10 px-3 py-1 backdrop-blur-sm"
+                >
+                  {t}
+                </span>
+              ),
+            )}
+          </div>
         </div>
-      </header>
+      </section>
 
-      <JsonFormatter />
+      {/* Tool */}
+      <section id="formatter" className="scroll-mt-16">
+        <JsonFormatter />
+      </section>
 
-      <section className="mx-auto w-full max-w-6xl px-4 pb-16">
+      {/* Features */}
+      <section className="mx-auto w-full max-w-6xl px-4 pb-16 sm:px-6">
         <div className="grid gap-4 md:grid-cols-3">
-          <div className="rounded-xl border border-zinc-200 p-5 dark:border-zinc-800">
-            <h2 className="font-semibold text-zinc-900 dark:text-zinc-50">Beautify</h2>
-            <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-              Indent and colorize your JSON for readability with syntax
-              highlighting and a collapsible tree view.
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700/60 dark:bg-slate-900">
+            <h2 className="font-semibold text-slate-900 dark:text-white">
+              JSON Beautifier
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
+              Pretty-print raw or compact JSON with 2 or 4 space indentation,
+              GitHub-style syntax highlighting, and a collapsible tree view for
+              easy navigation.
             </p>
           </div>
-          <div className="rounded-xl border border-zinc-200 p-5 dark:border-zinc-800">
-            <h2 className="font-semibold text-zinc-900 dark:text-zinc-50">Minify</h2>
-            <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-              Compress JSON to a single line by stripping whitespace and line
-              breaks.
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700/60 dark:bg-slate-900">
+            <h2 className="font-semibold text-slate-900 dark:text-white">
+              JSON Validator
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
+              Live validation catches syntax errors instantly and reports the exact
+              line and column, so you can fix broken JSON in seconds.
             </p>
           </div>
-          <div className="rounded-xl border border-zinc-200 p-5 dark:border-zinc-800">
-            <h2 className="font-semibold text-zinc-900 dark:text-zinc-50">Validate</h2>
-            <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-              Catch syntax errors instantly, including relaxed JS-style objects
-              with comments and trailing commas.
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700/60 dark:bg-slate-900">
+            <h2 className="font-semibold text-slate-900 dark:text-white">
+              JSON5 &amp; JavaScript-Style JSON
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
+              Format modern JavaScript-style JSON — unquoted keys, single quotes,
+              trailing commas, and comments — and normalize it into strict,
+              standards-compliant JSON.
             </p>
           </div>
         </div>
 
-        <h2 className="mt-12 text-xl font-bold text-zinc-900 dark:text-zinc-50">
+        {/* FAQ */}
+        <h2
+          id="faq"
+          className="mt-14 scroll-mt-16 text-2xl font-bold text-slate-900 dark:text-white"
+        >
           Frequently Asked Questions
         </h2>
-        <div className="mt-4 space-y-4 text-sm text-zinc-600 dark:text-zinc-400">
-          <div>
-            <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">
-              What is a JSON formatter?
-            </h3>
-            <p>
-              A JSON formatter takes raw or minified JSON and reformats it with
-              indentation and line breaks so it is easy to read. This tool also
-              validates the structure and highlights syntax errors.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">
-              Can I format JavaScript-style JSON?
-            </h3>
-            <p>
-              Yes. This formatter accepts relaxed JavaScript object syntax,
-              including unquoted keys, single-quoted strings, trailing commas,
-              and line/block comments.
-            </p>
-          </div>
-          <div>
-            <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">
-              Is my data sent to a server?
-            </h3>
-            <p>
-              No. All formatting happens locally in your browser. Your JSON is
-              never uploaded or stored.
-            </p>
-          </div>
+        <div className="mt-5 grid gap-4 md:grid-cols-2">
+          {faqs.map((f) => (
+            <div
+              key={f.q}
+              className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700/60 dark:bg-slate-900"
+            >
+              <h3 className="font-semibold text-slate-900 dark:text-white">{f.q}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                {f.a}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
     </div>

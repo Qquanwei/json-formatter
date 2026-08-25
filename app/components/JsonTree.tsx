@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { memo, useMemo, useState } from "react";
 import { isContainer } from "../lib/json";
 
 type Path = (string | number)[];
@@ -32,11 +32,14 @@ function pathKey(p: Path): string {
 }
 
 function primClass(value: unknown): { cls: string; text: string } {
-  if (value === null) return { cls: "text-zinc-400", text: "null" };
-  if (typeof value === "string") return { cls: "text-emerald-600 dark:text-emerald-400", text: JSON.stringify(value) };
-  if (typeof value === "number") return { cls: "text-blue-600 dark:text-sky-400", text: String(value) };
-  if (typeof value === "boolean") return { cls: "text-violet-600 dark:text-violet-400", text: String(value) };
-  return { cls: "text-zinc-500", text: String(value) };
+  if (value === null) return { cls: "text-[#6e7781] dark:text-[#8b949e]", text: "null" };
+  if (typeof value === "string")
+    return { cls: "text-[#116329] dark:text-[#a5d6a7]", text: JSON.stringify(value) };
+  if (typeof value === "number")
+    return { cls: "text-[#953800] dark:text-[#ffab70]", text: String(value) };
+  if (typeof value === "boolean")
+    return { cls: "text-[#0550ae] dark:text-[#79c0ff]", text: String(value) };
+  return { cls: "text-slate-500 dark:text-slate-400", text: String(value) };
 }
 
 function JsonNode({
@@ -56,9 +59,9 @@ function JsonNode({
 }) {
   const keyLabel =
     name === undefined ? null : (
-      <span className="text-zinc-800 dark:text-zinc-200">
+      <span className="text-slate-800 dark:text-slate-200">
         {typeof name === "number" ? name : <>&quot;{name}&quot;</>}
-        <span className="text-zinc-400">: </span>
+        <span className="text-slate-400">: </span>
       </span>
     );
 
@@ -84,20 +87,20 @@ function JsonNode({
         onClick={() => onToggle(path)}
       >
         {!isEmpty && (
-          <span className="inline-block w-4 select-none text-zinc-400 transition-transform group-hover:text-zinc-600 dark:group-hover:text-zinc-300">
+          <span className="inline-block w-4 select-none text-slate-400 transition-transform group-hover:text-slate-600 dark:group-hover:text-slate-300">
             {open ? "▾" : "▸"}
           </span>
         )}
         {isEmpty && <span className="inline-block w-4" />}
         {keyLabel}
-        <span className="text-zinc-600 dark:text-zinc-400">{openBracket}</span>
+        <span className="text-slate-600 dark:text-slate-400">{openBracket}</span>
         {!open && !isEmpty && (
-          <span className="text-zinc-400">…</span>
+          <span className="text-slate-400">…</span>
         )}
-        {!open && <span className="text-zinc-600 dark:text-zinc-400">{closeBracket}</span>}
+        {!open && <span className="text-slate-600 dark:text-slate-400">{closeBracket}</span>}
       </div>
       {open && (
-        <div className="ml-4 border-l border-zinc-200 pl-3 dark:border-zinc-700">
+        <div className="ml-4 border-l border-slate-200 pl-3 dark:border-slate-700">
           {Array.isArray(value)
             ? value.map((child, i) => (
                 <JsonNode
@@ -127,7 +130,7 @@ function JsonNode({
   );
 }
 
-export default function JsonTree({ value }: { value: unknown }) {
+export default memo(function JsonTree({ value }: { value: unknown }) {
   const containers = useMemo<NodeInfo[]>(() => {
     const acc: NodeInfo[] = [];
     collectContainers(value, [], 0, acc);
@@ -161,14 +164,14 @@ export default function JsonTree({ value }: { value: unknown }) {
         <button
           type="button"
           onClick={expandAll}
-          className="rounded border border-zinc-300 px-2 py-1 text-zinc-600 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+          className="rounded-lg border border-slate-300 px-2.5 py-1 font-medium text-slate-600 transition hover:bg-slate-100 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-800"
         >
           Expand all
         </button>
         <button
           type="button"
           onClick={collapseAll}
-          className="rounded border border-zinc-300 px-2 py-1 text-zinc-600 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+          className="rounded-lg border border-slate-300 px-2.5 py-1 font-medium text-slate-600 transition hover:bg-slate-100 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-800"
         >
           Collapse all
         </button>
@@ -184,4 +187,4 @@ export default function JsonTree({ value }: { value: unknown }) {
       </div>
     </div>
   );
-}
+});

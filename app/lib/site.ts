@@ -1,0 +1,23 @@
+export const SITE_NAME = "JSONGuy";
+export const SITE_URL = "https://jsonguy.com";
+export const SITE_TITLE =
+  "JSONGuy — Modern Online JSON Formatter, Validator & Beautifier";
+export const SITE_DESCRIPTION =
+  "JSONGuy is a modern online JSON formatter, validator, and beautifier with syntax highlighting and a collapsible tree view. Supports JavaScript-style JSON with comments, unquoted keys, and trailing commas. All formatting runs locally in your browser — your data never leaves your device.";
+
+export const SITE_KEYWORDS = [
+  "json formatter",
+  "modern json formatter",
+  "json validator",
+  "json beautifier",
+  "format json",
+  "json pretty print",
+  "online json formatter",
+  "json formatter and validator",
+  "json tree view",
+  "json editor",
+  "json viewer",
+  "javascript json formatter",
+  "json5 formatter",
+  "validate json online",
+];

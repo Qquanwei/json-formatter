@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "./lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,30 +15,64 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "JSON Formatter & Validator — Free Online JSON Beautifier",
-    template: "%s — JSON Formatter",
+    default: SITE_TITLE,
+    template: `%s — ${SITE_NAME}`,
   },
-  description:
-    "Free online JSON formatter, validator, minifier, and beautifier with syntax highlighting and a tree view. Supports JavaScript-style JSON with comments, unquoted keys, and trailing commas. No data leaves your browser.",
-  keywords: [
-    "json formatter",
-    "json validator",
-    "json beautifier",
-    "json minifier",
-    "format json",
-    "json pretty print",
-  ],
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "JSON Formatter & Validator — Free Online JSON Beautifier",
-    description:
-      "Free online JSON formatter, validator, minifier, and beautifier with syntax highlighting and a tree view.",
     type: "website",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: SITE_NAME,
+  alternateName: "JSONGuy JSON Formatter",
+  url: SITE_URL,
+  description: SITE_DESCRIPTION,
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Any",
+  browserRequirements: "Requires JavaScript",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+  featureList: [
+    "JSON formatter and beautifier",
+    "JSON validator with error location",
+    "Collapsible tree view",
+    "Modern JavaScript-style JSON (JSON5) support",
+    "Syntax highlighting",
+    "Runs locally in the browser",
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -45,7 +81,50 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80">
+          <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
+            <Link href="/" className="flex items-center gap-2 font-semibold text-slate-900 dark:text-white">
+              <span className="text-lg tracking-tight">
+                {SITE_NAME}
+                <span className="ml-2 hidden rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-500 dark:bg-slate-800 dark:text-slate-400 sm:inline">
+                  Free
+                </span>
+              </span>
+            </Link>
+            <nav className="flex items-center gap-1 text-sm">
+              <a
+                href="#formatter"
+                className="rounded-md px-3 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+              >
+                Formatter
+              </a>
+              <a
+                href="#faq"
+                className="rounded-md px-3 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+              >
+                FAQ
+              </a>
+            </nav>
+          </div>
+        </header>
+        {children}
+        <footer className="mt-auto border-t border-slate-200 dark:border-slate-800">
+          <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-2 px-4 py-6 text-sm text-slate-500 dark:text-slate-400 sm:flex-row sm:px-6">
+            <p>
+              © {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
+            </p>
+            <p className="text-xs">
+              Free online JSON formatter, validator, and beautifier — no sign-up,
+              100% client-side.
+            </p>
+          </div>
+        </footer>
+      </body>
     </html>
   );
 }
