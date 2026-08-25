@@ -19,5 +19,9 @@ export const SITE_KEYWORDS = [
   "json viewer",
   "javascript json formatter",
   "json5 formatter",
+  "python dict to json",
+  "python object to json",
   "validate json online",
 ];
+
+export const INDEXNOW_KEY = "199dd3f83302a7cff31fd91c9a4b3aa5";
