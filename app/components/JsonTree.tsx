@@ -100,31 +100,37 @@ function JsonNode({
         {!open && <span className="text-slate-600 dark:text-slate-400">{closeBracket}</span>}
       </div>
       {open && (
-        <div className="ml-4 border-l border-slate-200 pl-3 dark:border-slate-700">
-          {Array.isArray(value)
-            ? value.map((child, i) => (
-                <JsonNode
-                  key={i}
-                  name={i}
-                  value={child}
-                  path={[...path, i]}
-                  depth={depth + 1}
-                  expanded={expanded}
-                  onToggle={onToggle}
-                />
-              ))
-            : Object.entries(value).map(([k, child]) => (
-                <JsonNode
-                  key={k}
-                  name={k}
-                  value={child}
-                  path={[...path, k]}
-                  depth={depth + 1}
-                  expanded={expanded}
-                  onToggle={onToggle}
-                />
-              ))}
-        </div>
+        <>
+          <div className="ml-4 border-l border-slate-200 pl-3 dark:border-slate-700">
+            {Array.isArray(value)
+              ? value.map((child, i) => (
+                  <JsonNode
+                    key={i}
+                    name={i}
+                    value={child}
+                    path={[...path, i]}
+                    depth={depth + 1}
+                    expanded={expanded}
+                    onToggle={onToggle}
+                  />
+                ))
+              : Object.entries(value).map(([k, child]) => (
+                  <JsonNode
+                    key={k}
+                    name={k}
+                    value={child}
+                    path={[...path, k]}
+                    depth={depth + 1}
+                    expanded={expanded}
+                    onToggle={onToggle}
+                  />
+                ))}
+          </div>
+          <div className="flex items-center leading-6">
+            <span className="inline-block w-4" />
+            <span className="text-slate-600 dark:text-slate-400">{closeBracket}</span>
+          </div>
+        </>
       )}
     </div>
   );

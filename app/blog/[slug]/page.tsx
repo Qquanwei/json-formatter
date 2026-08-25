@@ -3,9 +3,11 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getPost, posts } from "../../lib/posts";
 import JsonFormatterComparison from "../content/json-formatter-comparison";
+import HandlingNonStandardJson from "../content/handling-non-standard-json";
 
 const contentBySlug: Record<string, () => React.ReactElement> = {
   "json-formatter-comparison": () => <JsonFormatterComparison />,
+  "handling-non-standard-json": () => <HandlingNonStandardJson />,
 };
 
 export function generateStaticParams() {
