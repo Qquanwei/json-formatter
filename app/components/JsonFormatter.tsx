@@ -252,7 +252,7 @@ export default function JsonFormatter() {
                 </button>
               </div>
             </div>
-            <div className="flex h-[440px]">
+            <div className="flex h-[520px]">
               <div
                 ref={lineNumbersRef}
                 aria-hidden
@@ -353,7 +353,7 @@ export default function JsonFormatter() {
                 </div>
               </div>
             </div>
-            <div className="h-[440px] overflow-auto p-4">
+            <div className="h-[520px] overflow-auto p-4">
               {error ? (
                 <div className="flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950/40 dark:text-red-400">
                   <XCircle className="mt-0.5 h-4 w-4 shrink-0" />
