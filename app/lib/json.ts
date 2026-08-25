@@ -4,12 +4,71 @@ export type ParseResult =
   | { ok: true; value: unknown }
   | { ok: false; message: string; line?: number; column?: number };
 
+function isIdentChar(c: string | undefined): boolean {
+  return !!c && /[a-zA-Z0-9_$]/.test(c);
+}
+
+/**
+ * Converts Python-style literals (True/False/None) to JSON5 keywords,
+ * skipping anything inside string literals so text is never altered.
+ */
+export function normalizePythonLiterals(text: string): string {
+  let out = "";
+  let i = 0;
+  const n = text.length;
+
+  while (i < n) {
+    const c = text[i];
+
+    if (c === '"' || c === "'") {
+      const quote = c;
+      out += c;
+      i++;
+      while (i < n) {
+        const ch = text[i];
+        if (ch === "\\") {
+          out += ch;
+          i++;
+          if (i < n) out += text[i];
+          i++;
+          continue;
+        }
+        out += ch;
+        i++;
+        if (ch === quote) break;
+      }
+      continue;
+    }
+
+    if (c === "T" && text.startsWith("True", i) && !isIdentChar(text[i + 4])) {
+      out += "true";
+      i += 4;
+      continue;
+    }
+    if (c === "F" && text.startsWith("False", i) && !isIdentChar(text[i + 5])) {
+      out += "false";
+      i += 5;
+      continue;
+    }
+    if (c === "N" && text.startsWith("None", i) && !isIdentChar(text[i + 4])) {
+      out += "null";
+      i += 4;
+      continue;
+    }
+
+    out += c;
+    i++;
+  }
+
+  return out;
+}
+
 export function parseJson(input: string): ParseResult {
   if (!input.trim()) {
     return { ok: false, message: "Input is empty." };
   }
   try {
-    const value = JSON5.parse(input);
+    const value = JSON5.parse(normalizePythonLiterals(input));
     return { ok: true, value };
   } catch (err) {
     const e = err as { message?: string; lineNumber?: number; columnNumber?: number };

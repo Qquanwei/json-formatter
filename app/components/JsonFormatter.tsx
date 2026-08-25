@@ -273,7 +273,7 @@ export default function JsonFormatter() {
                 onScroll={syncScroll}
                 spellCheck={false}
                 className="h-full min-w-0 flex-1 resize-none overflow-x-auto bg-transparent p-4 font-mono text-[13px] leading-6 text-slate-800 outline-none placeholder:text-slate-400 dark:text-slate-200"
-                placeholder="Paste JSON or JS-style object here…"
+                placeholder="Paste JSON, JS-style, or Python object here…"
               />
             </div>
           </div>
@@ -402,7 +402,7 @@ export default function JsonFormatter() {
             )}
           </div>
           <span className="text-xs text-slate-400">
-            Supports JS-style JSON: comments, unquoted keys, trailing commas
+            Supports JS-style JSON &amp; Python objects: comments, unquoted keys, trailing commas, None/True/False
           </span>
         </div>
       </div>

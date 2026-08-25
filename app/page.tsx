@@ -13,8 +13,8 @@ const faqs = [
     a: "Paste your JSON into the input box and click the Beautify button between the two panes. JSONGuy pretty-prints the JSON in the output pane, and you can use the tree view to navigate nested objects and arrays.",
   },
   {
-    q: "Can I format JavaScript-style JSON?",
-    a: "Yes. JSONGuy supports relaxed JavaScript object syntax (JSON5), including unquoted keys, single-quoted strings, trailing commas, and line or block comments. It normalizes them into standard JSON.",
+    q: "Can I format JavaScript-style JSON or Python objects?",
+    a: "Yes. JSONGuy supports relaxed JavaScript object syntax (JSON5) — unquoted keys, single-quoted strings, trailing commas, and line or block comments — and Python dicts with None, True, and False. It normalizes all of them into standard JSON.",
   },
   {
     q: "How do I validate JSON?",
@@ -26,7 +26,7 @@ const faqs = [
   },
   {
     q: "What makes JSONGuy a modern JSON formatter?",
-    a: "Unlike legacy formatters, JSONGuy is built for modern JavaScript. It understands relaxed JSON5 syntax (unquoted keys, single quotes, trailing commas, comments), offers GitHub-style syntax highlighting, a collapsible tree view, live validation, and runs entirely in your browser with no server round-trips.",
+    a: "Unlike legacy formatters, JSONGuy is built for modern development. It understands relaxed JavaScript-style JSON and Python objects (unquoted keys, single quotes, trailing commas, comments, None/True/False), offers GitHub-style syntax highlighting, a collapsible tree view, live validation, and runs entirely in your browser with no server round-trips.",
   },
 ];
 
@@ -66,12 +66,12 @@ export default function Home() {
           <p className="mx-auto mt-5 max-w-2xl text-base text-slate-100 drop-shadow sm:text-lg">
             {SITE_NAME} is a modern JSON formatter that pretty-prints and
             validates JSON in your browser — with syntax highlighting and a
-            collapsible tree view. Supports JavaScript-style JSON (comments,
-            unquoted keys, trailing commas). 100% client-side, no sign-up
-            required.
+            collapsible tree view. Supports JavaScript-style JSON and Python
+            objects (comments, single quotes, unquoted keys, trailing commas,
+            None/True/False). 100% client-side, no sign-up required.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-xs font-medium text-white">
-            {["Modern JSON Formatter", "JSON Validator", "JSON Beautifier", "JSON5 Support", "JSON Tree View"].map(
+            {["Modern JSON Formatter", "JSON Validator", "JSON Beautifier", "JavaScript & Python JSON", "JSON Tree View"].map(
               (t) => (
                 <span
                   key={t}
@@ -114,12 +114,13 @@ export default function Home() {
           </div>
           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700/60 dark:bg-slate-900">
             <h2 className="font-semibold text-slate-900 dark:text-white">
-              JSON5 &amp; JavaScript-Style JSON
+              JavaScript &amp; Python Object Syntax
             </h2>
             <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
-              Format modern JavaScript-style JSON — unquoted keys, single quotes,
-              trailing commas, and comments — and normalize it into strict,
-              standards-compliant JSON.
+              Paste modern JavaScript-style JSON or a Python dict — unquoted
+              keys, single quotes, trailing commas, comments, and
+              None/True/False — and normalize it into strict, standards-compliant
+              JSON.
             </p>
           </div>
         </div>
