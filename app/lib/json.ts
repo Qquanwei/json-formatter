@@ -9,10 +9,12 @@ function isIdentChar(c: string | undefined): boolean {
 }
 
 /**
- * Converts Python-style literals (True/False/None) to JSON5 keywords,
- * skipping anything inside string literals so text is never altered.
+ * Normalizes Python object syntax into JSON5 before parsing:
+ * - True/False/None -> true/false/null
+ * - tuples ( ... ) -> arrays [ ... ]
+ * Anything inside string literals is copied through untouched.
  */
-export function normalizePythonLiterals(text: string): string {
+export function normalizePythonSyntax(text: string): string {
   let out = "";
   let i = 0;
   const n = text.length;
@@ -55,6 +57,16 @@ export function normalizePythonLiterals(text: string): string {
       i += 4;
       continue;
     }
+    if (c === "(") {
+      out += "[";
+      i++;
+      continue;
+    }
+    if (c === ")") {
+      out += "]";
+      i++;
+      continue;
+    }
 
     out += c;
     i++;
@@ -68,7 +80,7 @@ export function parseJson(input: string): ParseResult {
     return { ok: false, message: "Input is empty." };
   }
   try {
-    const value = JSON5.parse(normalizePythonLiterals(input));
+    const value = JSON5.parse(normalizePythonSyntax(input));
     return { ok: true, value };
   } catch (err) {
     const e = err as { message?: string; lineNumber?: number; columnNumber?: number };

@@ -20,6 +20,13 @@ export const posts: PostMeta[] = [
       "Real-world JSON comes in three flavors — strict, Python-style, and JavaScript-style. Here's how JSONGuy accepts all three without breaking.",
     date: "2026-08-25",
   },
+  {
+    slug: "python-dict-to-json",
+    title: "Python dict to JSON: why it breaks and how to convert it",
+    description:
+      "Single quotes, None/True/False, tuples, trailing commas — a Python dict isn't valid JSON. Here's what breaks and how to convert it without manual cleanup.",
+    date: "2026-08-25",
+  },
 ];
 
 export function getPost(slug: string): PostMeta | undefined {

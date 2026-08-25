@@ -125,6 +125,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               </span>
             </Link>
             <nav className="flex items-center gap-1 text-sm">
+              <Link
+                href="/python-dict-to-json"
+                className="rounded-md px-3 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+              >
+                Python → JSON
+              </Link>
               <a
                 href="#formatter"
                 className="rounded-md px-3 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
@@ -156,14 +162,28 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </header>
         {children}
         <footer className="mt-auto border-t border-slate-200 dark:border-slate-800">
-          <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-2 px-4 py-6 text-sm text-slate-500 dark:text-slate-400 sm:flex-row sm:px-6">
+          <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-3 px-4 py-6 text-sm text-slate-500 dark:text-slate-400 sm:flex-row sm:px-6">
             <p>
               © {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
             </p>
-            <p className="text-xs">
-              Free online JSON formatter, validator, and beautifier — no sign-up,
-              100% client-side.
-            </p>
+            <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs">
+              <Link
+                href="/python-dict-to-json"
+                className="hover:text-slate-700 dark:hover:text-slate-200"
+              >
+                Python Dict to JSON
+              </Link>
+              <Link
+                href="/blog"
+                className="hover:text-slate-700 dark:hover:text-slate-200"
+              >
+                Blog
+              </Link>
+              <span>
+                Free online JSON formatter, validator, and beautifier — no
+                sign-up, 100% client-side.
+              </span>
+            </nav>
           </div>
         </footer>
         <Analytics />

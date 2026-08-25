@@ -4,10 +4,12 @@ import Link from "next/link";
 import { getPost, posts } from "../../lib/posts";
 import JsonFormatterComparison from "../content/json-formatter-comparison";
 import HandlingNonStandardJson from "../content/handling-non-standard-json";
+import PythonDictToJson from "../content/python-dict-to-json";
 
 const contentBySlug: Record<string, () => React.ReactElement> = {
   "json-formatter-comparison": () => <JsonFormatterComparison />,
   "handling-non-standard-json": () => <HandlingNonStandardJson />,
+  "python-dict-to-json": () => <PythonDictToJson />,
 };
 
 export function generateStaticParams() {

@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   AlignLeft,
   ArrowLeftRight,
@@ -14,8 +14,9 @@ import {
   Sparkles,
   XCircle,
 } from "lucide-react";
-import { beautify, parseJson, sortValue, tokenizeJson, type Token } from "../lib/json";
+import { beautify, parseJson, sortValue } from "../lib/json";
 import { usePersistedState } from "../lib/usePersistedState";
+import { Highlighted } from "./HighlightedJson";
 import JsonTree from "./JsonTree";
 
 const SAMPLE = `{
@@ -28,28 +29,6 @@ const SAMPLE = `{
     zip: '10001',
   },
 }`;
-
-const TOKEN_CLASS: Record<Token["type"], string> = {
-  key: "text-[#0550ae] dark:text-[#79c0ff]",
-  string: "text-[#116329] dark:text-[#a5d6a7]",
-  number: "text-[#953800] dark:text-[#ffab70]",
-  boolean: "text-[#8250df] dark:text-[#d2a8ff]",
-  null: "text-[#cf222e] dark:text-[#ff7b72]",
-  punctuation: "text-[#57606a] dark:text-[#8b949e]",
-};
-
-const Highlighted = memo(function Highlighted({ text }: { text: string }) {
-  const tokens = tokenizeJson(text);
-  return (
-    <pre className="whitespace-pre font-mono text-[13px] leading-6">
-      {tokens.map((t, i) => (
-        <span key={i} className={TOKEN_CLASS[t.type]}>
-          {t.value}
-        </span>
-      ))}
-    </pre>
-  );
-});
 
 type View = "code" | "tree";
 
@@ -85,8 +64,18 @@ function ToggleSwitch({
 
 const STORAGE_KEY = "jsonguy:input";
 
-export default function JsonFormatter() {
-  const [input, setInput] = usePersistedState(STORAGE_KEY, SAMPLE);
+interface JsonFormatterProps {
+  initialInput?: string;
+  storageKey?: string;
+  placeholder?: string;
+}
+
+export default function JsonFormatter({
+  initialInput = SAMPLE,
+  storageKey = STORAGE_KEY,
+  placeholder = "Paste JSON, JS-style, or Python object here…",
+}: JsonFormatterProps = {}) {
+  const [input, setInput] = usePersistedState(storageKey, initialInput);
   const [output, setOutput] = useState("");
   const [view, setView] = useState<View>("code");
   const [parsed, setParsed] = useState<unknown>(null);
@@ -273,7 +262,7 @@ export default function JsonFormatter() {
                 onScroll={syncScroll}
                 spellCheck={false}
                 className="h-full min-w-0 flex-1 resize-none overflow-x-auto bg-transparent p-4 font-mono text-[13px] leading-6 text-slate-800 outline-none placeholder:text-slate-400 dark:text-slate-200"
-                placeholder="Paste JSON, JS-style, or Python object here…"
+                placeholder={placeholder}
               />
             </div>
           </div>

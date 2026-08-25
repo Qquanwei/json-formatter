@@ -7,9 +7,11 @@ const HOST = "jsonguy.airankone.com";
 
 const paths = [
   "/",
+  "/python-dict-to-json",
   "/blog",
   "/blog/json-formatter-comparison",
   "/blog/handling-non-standard-json",
+  "/blog/python-dict-to-json",
 ];
 
 async function submit(urlList) {
