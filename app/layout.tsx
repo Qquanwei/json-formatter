@@ -33,11 +33,20 @@ export const metadata: Metadata = {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     locale: "en_US",
+    images: [
+      {
+        url: `${SITE_URL}/og-image.jpeg`,
+        width: 1280,
+        height: 698,
+        alt: SITE_TITLE,
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
+    images: [`${SITE_URL}/og-image.jpeg`],
   },
   robots: {
     index: true,
@@ -70,7 +79,7 @@ const websiteJsonLd = {
     "JSON formatter and beautifier",
     "JSON validator with error location",
     "Collapsible tree view",
-    "Modern JavaScript-style JSON (JSON5) support",
+    "JavaScript-style JSON and Python object support",
     "Syntax highlighting",
     "Runs locally in the browser",
   ],
