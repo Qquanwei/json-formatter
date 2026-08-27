@@ -8,10 +8,13 @@ const HOST = "jsonguy.airankone.com";
 const paths = [
   "/",
   "/python-dict-to-json",
+  "/json-repair",
   "/blog",
   "/blog/json-formatter-comparison",
   "/blog/handling-non-standard-json",
   "/blog/python-dict-to-json",
+  "/blog/json5-vs-json",
+  "/blog/json-repair",
 ];
 
 async function submit(urlList) {

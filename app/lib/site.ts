@@ -3,7 +3,7 @@ export const SITE_URL = "https://jsonguy.airankone.com";
 export const SITE_TITLE =
   "JSON Formatter, Validator & Beautifier — JSONGuy";
 export const SITE_DESCRIPTION =
-  "JSONGuy is a modern online JSON formatter, validator, and beautifier with syntax highlighting and a collapsible tree view. Supports JavaScript-style JSON and Python objects — comments, single quotes, unquoted keys, trailing commas, None/True/False. All formatting runs locally in your browser — your data never leaves your device.";
+  "JSONGuy is a modern online JSON formatter, validator, and beautifier with syntax highlighting and a collapsible tree view. Supports JSON5, JavaScript-style JSON, and Python objects — comments, single quotes, unquoted keys, trailing commas, None/True/False. All formatting runs locally in your browser — your data never leaves your device.";
 
 export const SITE_KEYWORDS = [
   "json formatter",
@@ -18,6 +18,7 @@ export const SITE_KEYWORDS = [
   "json editor",
   "json viewer",
   "javascript json formatter",
+  "json5",
   "json5 formatter",
   "python dict to json",
   "python object to json",

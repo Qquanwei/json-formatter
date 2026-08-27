@@ -7,10 +7,24 @@ export interface PostMeta {
 
 export const posts: PostMeta[] = [
   {
-    slug: "json-formatter-comparison",
-    title: "JSONGuy vs. other JSON formatters: a quick comparison",
+    slug: "json-repair",
+    title: "JSON repair: fixing the JSON that tools reject",
     description:
-      "A short, honest look at how JSONGuy stacks up against the JSON tools people reach for most — and why JS-style JSON and Python support is the whole point.",
+      "Missing quotes, missing commas, unclosed brackets — here are the common ways JSON breaks and how to fix it automatically.",
+    date: "2026-08-27",
+  },
+  {
+    slug: "json5-vs-json",
+    title: "JSON5 vs JSON: what's different and why it matters",
+    description:
+      "Unquoted keys, single quotes, comments, trailing commas — JSON5 loosens JSON for humans. Here's what it changes and how JSONGuy handles it.",
+    date: "2026-08-27",
+  },
+  {
+    slug: "python-dict-to-json",
+    title: "Python dict to JSON: why it breaks and how to convert it",
+    description:
+      "Single quotes, None/True/False, tuples, trailing commas — a Python dict isn't valid JSON. Here's what breaks and how to convert it without manual cleanup.",
     date: "2026-08-25",
   },
   {
@@ -21,10 +35,10 @@ export const posts: PostMeta[] = [
     date: "2026-08-25",
   },
   {
-    slug: "python-dict-to-json",
-    title: "Python dict to JSON: why it breaks and how to convert it",
+    slug: "json-formatter-comparison",
+    title: "JSONGuy vs. other JSON formatters: a quick comparison",
     description:
-      "Single quotes, None/True/False, tuples, trailing commas — a Python dict isn't valid JSON. Here's what breaks and how to convert it without manual cleanup.",
+      "A short, honest look at how JSONGuy stacks up against the JSON tools people reach for most — and why JS-style JSON and Python support is the whole point.",
     date: "2026-08-25",
   },
 ];

@@ -59,7 +59,7 @@ export default function PythonDictToJsonPage() {
         </p>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-4 pb-8 sm:px-6">
+      <section className="pb-8">
         <JsonFormatter
           initialInput={PYTHON_SAMPLE}
           storageKey="jsonguy:python-input"

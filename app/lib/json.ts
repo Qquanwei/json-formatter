@@ -1,4 +1,5 @@
 import JSON5 from "json5";
+import { jsonrepair } from "jsonrepair";
 
 export type ParseResult =
   | { ok: true; value: unknown }
@@ -89,6 +90,28 @@ export function parseJson(input: string): ParseResult {
     const line = e?.lineNumber;
     const column = e?.columnNumber;
     return { ok: false, message, line, column };
+  }
+}
+
+export function repairJson(input: string): ParseResult {
+  if (!input.trim()) {
+    return { ok: false, message: "Input is empty." };
+  }
+  const normalized = normalizePythonSyntax(input);
+  try {
+    return { ok: true, value: JSON5.parse(normalized) };
+  } catch {
+    /* needs repair */
+  }
+  try {
+    const repaired = jsonrepair(normalized);
+    return { ok: true, value: JSON5.parse(repaired) };
+  } catch (err) {
+    const e = err as { message?: string };
+    return {
+      ok: false,
+      message: e?.message ?? "Could not repair the input.",
+    };
   }
 }
 

@@ -141,9 +141,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <Link href="/" className="flex items-center gap-2 font-semibold text-slate-900 dark:text-white">
               <span className="text-lg tracking-tight">
                 {SITE_NAME}
-                <span className="ml-2 hidden rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-500 dark:bg-slate-800 dark:text-slate-400 sm:inline">
-                  Free
-                </span>
               </span>
             </Link>
             <nav className="flex items-center gap-1 text-sm">
@@ -153,12 +150,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               >
                 Python → JSON
               </Link>
-              <a
-                href="#formatter"
+              <Link
+                href="/json-repair"
+                className="rounded-md px-3 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+              >
+                JSON Repair
+              </Link>
+              <Link
+                href="/"
                 className="rounded-md px-3 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
               >
                 Formatter
-              </a>
+              </Link>
               <a
                 href="#faq"
                 className="rounded-md px-3 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"

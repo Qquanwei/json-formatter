@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/blog" },
 };
 
+const sorted = [...posts].sort((a, b) => b.date.localeCompare(a.date));
+
 export default function Blog() {
   return (
     <div className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6">
@@ -19,23 +21,25 @@ export default function Blog() {
         Notes from the {SITE_NAME} project.
       </p>
 
-      <div className="mt-10 space-y-4">
-        {posts.map((post) => (
-          <Link
+      <ul className="mt-10 space-y-2">
+        {sorted.map((post, i) => (
+          <li
             key={post.slug}
-            href={`/blog/${post.slug}`}
-            className="block rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-slate-300 hover:shadow dark:border-slate-700/60 dark:bg-slate-900 dark:hover:border-slate-600"
+            className="flex flex-wrap items-baseline gap-x-3 text-base leading-7"
           >
-            <div className="text-xs text-slate-400">{post.date}</div>
-            <h2 className="mt-1 text-lg font-semibold text-slate-900 dark:text-white">
+            <span className="w-6 shrink-0 text-right text-slate-400">{i + 1}.</span>
+            <Link
+              href={`/blog/${post.slug}`}
+              className="text-slate-900 hover:underline dark:text-slate-100"
+            >
               {post.title}
-            </h2>
-            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
-              {post.description}
-            </p>
-          </Link>
+            </Link>
+            <span className="shrink-0 text-sm text-slate-600 dark:text-slate-400">
+              {post.date}
+            </span>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

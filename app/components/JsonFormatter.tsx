@@ -12,9 +12,10 @@ import {
   Eraser,
   ListTree,
   Sparkles,
+  Wrench,
   XCircle,
 } from "lucide-react";
-import { beautify, parseJson, sortValue } from "../lib/json";
+import { beautify, parseJson, repairJson, sortValue } from "../lib/json";
 import { usePersistedState } from "../lib/usePersistedState";
 import { Highlighted } from "./HighlightedJson";
 import JsonTree from "./JsonTree";
@@ -68,12 +69,14 @@ interface JsonFormatterProps {
   initialInput?: string;
   storageKey?: string;
   placeholder?: string;
+  repair?: boolean;
 }
 
 export default function JsonFormatter({
   initialInput = SAMPLE,
   storageKey = STORAGE_KEY,
   placeholder = "Paste JSON, JS-style, or Python object here…",
+  repair = false,
 }: JsonFormatterProps = {}) {
   const [input, setInput] = usePersistedState(storageKey, initialInput);
   const [output, setOutput] = useState("");
@@ -118,6 +121,20 @@ export default function JsonFormatter({
 
   const beautifyJson = () => {
     const r = parseJson(input);
+    if (!r.ok) {
+      setError(formatError(r));
+      setStatus("invalid");
+      return;
+    }
+    setError(null);
+    setParsed(r.value);
+    const value = sortKeys ? sortValue(r.value) : r.value;
+    setOutput(beautify(value, indent));
+    setView("code");
+  };
+
+  const repairAction = () => {
+    const r = repairJson(input);
     if (!r.ok) {
       setError(formatError(r));
       setStatus("invalid");
@@ -267,16 +284,16 @@ export default function JsonFormatter({
             </div>
           </div>
 
-          {/* Beautify divider */}
+          {/* Beautify / Repair divider */}
           <div className="flex items-center justify-center border-b border-slate-200 px-3 py-3 dark:border-slate-700/60 md:border-b-0 md:border-r">
             <button
               type="button"
-              onClick={beautifyJson}
-              aria-label="Beautify JSON"
-              title="Beautify JSON"
+              onClick={repair ? repairAction : beautifyJson}
+              aria-label={repair ? "Repair JSON" : "Beautify JSON"}
+              title={repair ? "Repair JSON" : "Beautify JSON"}
               className="flex h-12 w-12 items-center justify-center rounded-full bg-indigo-600 text-white transition hover:bg-indigo-500"
             >
-              <ArrowRight className="h-6 w-6" />
+              {repair ? <Wrench className="h-6 w-6" /> : <ArrowRight className="h-6 w-6" />}
             </button>
           </div>
 
@@ -354,7 +371,11 @@ export default function JsonFormatter({
                 ) : (
                   <div className="flex h-full flex-col items-center justify-center gap-2 text-center text-slate-400">
                     <Sparkles className="h-8 w-8 text-slate-300 dark:text-slate-600" />
-                    <p className="text-sm">Click Beautify to format your JSON.</p>
+                    <p className="text-sm">
+                      {repair
+                        ? "Click Repair to fix your JSON."
+                        : "Click Beautify to format your JSON."}
+                    </p>
                   </div>
                 )
               ) : parsed !== null ? (
