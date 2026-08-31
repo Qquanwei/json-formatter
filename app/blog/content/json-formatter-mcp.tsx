@@ -109,6 +109,58 @@ export default function JsonguyMcp() {
       </p>
 
       <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
+        Real examples
+      </h2>
+
+      <p>
+        Here&apos;s the actual output each tool returns, copied straight from a
+        connected client.
+      </p>
+
+      <p>
+        <code className="rounded bg-slate-100 px-1.5 py-0.5 text-sm dark:bg-slate-800">
+          format_json
+        </code>{" "}
+        — a Python dict goes in:
+      </p>
+      <Code>{`{'name': 'John Doe', 'active': True, 'tags': ('python', 'json', 'mcp'),}`}</Code>
+      <p>Strict JSON comes out:</p>
+      <Code>{`{
+  "name": "John Doe",
+  "active": true,
+  "tags": [
+    "python",
+    "json",
+    "mcp"
+  ]
+}`}</Code>
+
+      <p>
+        <code className="rounded bg-slate-100 px-1.5 py-0.5 text-sm dark:bg-slate-800">
+          repair_json
+        </code>{" "}
+        — missing quotes, a missing comma, and an unclosed bracket:
+      </p>
+      <Code>{`{name: John, city: New York, tags: ['a', 'b'`}</Code>
+      <p>Repaired:</p>
+      <Code>{`{
+  "name": "John",
+  "city": "New York",
+  "tags": [
+    "a",
+    "b"
+  ]
+}`}</Code>
+
+      <p>
+        <code className="rounded bg-slate-100 px-1.5 py-0.5 text-sm dark:bg-slate-800">
+          validate_json
+        </code>{" "}
+        — a truncated object is caught with the exact location:
+      </p>
+      <Code>{`{"valid": false, "message": "invalid end of input", "line": 1, "column": 18}`}</Code>
+
+      <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
         Try it
       </h2>
 
