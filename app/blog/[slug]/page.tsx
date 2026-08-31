@@ -51,20 +51,47 @@ export default async function BlogPost({
   const Content = contentBySlug[slug];
   if (!Content) notFound();
 
+  const otherPosts = posts
+    .filter((p) => p.slug !== slug)
+    .sort((a, b) => b.date.localeCompare(a.date));
+
   return (
-    <div className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6">
-      <Link
-        href="/blog"
-        className="text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
-      >
-        ← All posts
-      </Link>
-      <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-        {post.title}
-      </h1>
-      <div className="mt-3 text-sm text-slate-400">{post.date}</div>
-      <div className="mt-8">
-        <Content />
+    <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
+      <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-10">
+        <div>
+          <Link
+            href="/blog"
+            className="text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+          >
+            ← All posts
+          </Link>
+          <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+            {post.title}
+          </h1>
+          <div className="mt-3 text-sm text-slate-400">{post.date}</div>
+          <div className="mt-8">
+            <Content />
+          </div>
+        </div>
+
+        <aside className="mt-12 lg:mt-0">
+          <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            More posts
+          </h2>
+          <ul className="mt-3 space-y-4">
+            {otherPosts.map((p) => (
+              <li key={p.slug}>
+                <Link
+                  href={`/blog/${p.slug}`}
+                  className="text-sm text-slate-700 hover:underline dark:text-slate-300"
+                >
+                  {p.title}
+                </Link>
+                <div className="mt-0.5 text-xs text-slate-400">{p.date}</div>
+              </li>
+            ))}
+          </ul>
+        </aside>
       </div>
     </div>
   );
