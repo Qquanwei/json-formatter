@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import JsonFormatter from "./components/JsonFormatter";
 import { SITE_NAME } from "./lib/site";
 import heroImg from "../hero.jpeg";
@@ -27,6 +28,12 @@ const faqs = [
   {
     q: "What makes JSONGuy a modern JSON formatter?",
     a: "Unlike legacy formatters, JSONGuy is built for modern development. It understands JSON5, JavaScript-style JSON, and Python objects (unquoted keys, single quotes, trailing commas, comments, None/True/False), offers GitHub-style syntax highlighting, a collapsible tree view, live validation, and runs entirely in your browser with no server round-trips.",
+  },
+  {
+    q: "Does JSONGuy have an MCP server?",
+    a: "Yes. Connect JSONGuy's formatter, validator, and repair tools to Claude, Cursor, or any MCP client. It accepts the same inputs as the web tool — JSON, JSON5, JavaScript objects, and Python dicts — and can repair broken JSON.",
+    linkHref: "/blog/json-formatter-mcp",
+    linkText: "Read the MCP guide",
   },
 ];
 
@@ -141,6 +148,18 @@ export default function Home() {
               <h3 className="font-semibold text-slate-900 dark:text-white">{f.q}</h3>
               <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
                 {f.a}
+                {"linkHref" in f && f.linkHref && (
+                  <>
+                    {" "}
+                    <Link
+                      href={f.linkHref}
+                      className="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
+                    >
+                      {f.linkText}
+                    </Link>
+                    .
+                  </>
+                )}
               </p>
             </div>
           ))}

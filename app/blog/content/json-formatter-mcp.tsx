@@ -103,7 +103,7 @@ export default function JsonguyMcp() {
           href="/"
           className="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
         >
-          web formatter
+          JSONGuy web formatter
         </Link>
         , so the output is consistent wherever you use it.
       </p>
