@@ -7,6 +7,20 @@ export interface PostMeta {
 
 export const posts: PostMeta[] = [
   {
+    slug: "json-formatter-mcp",
+    title: "JSONGuy now has an MCP server: format and repair JSON from any AI client",
+    description:
+      "Connect JSONGuy's formatter, validator, and repair tools to Claude, Cursor, or any MCP client via a single HTTP endpoint.",
+    date: "2026-08-31",
+  },
+  {
+    slug: "convert-python-dict-to-json",
+    title: "How to convert a Python dict to JSON (the code way and the no-code way)",
+    description:
+      "json.dumps in a script, or paste it into a converter — here are both ways to turn a Python dict into JSON, plus the edge cases like tuples and non-string keys.",
+    date: "2026-08-31",
+  },
+  {
     slug: "json-repair",
     title: "JSON repair: fixing the JSON that tools reject",
     description:

@@ -7,6 +7,8 @@ import HandlingNonStandardJson from "../content/handling-non-standard-json";
 import PythonDictToJson from "../content/python-dict-to-json";
 import Json5VsJson from "../content/json5-vs-json";
 import JsonRepair from "../content/json-repair";
+import ConvertPythonDictToJson from "../content/convert-python-dict-to-json";
+import JsonFormatterMcp from "../content/json-formatter-mcp";
 
 const contentBySlug: Record<string, () => React.ReactElement> = {
   "json-formatter-comparison": () => <JsonFormatterComparison />,
@@ -14,6 +16,8 @@ const contentBySlug: Record<string, () => React.ReactElement> = {
   "python-dict-to-json": () => <PythonDictToJson />,
   "json5-vs-json": () => <Json5VsJson />,
   "json-repair": () => <JsonRepair />,
+  "convert-python-dict-to-json": () => <ConvertPythonDictToJson />,
+  "json-formatter-mcp": () => <JsonFormatterMcp />,
 };
 
 export function generateStaticParams() {

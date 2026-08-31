@@ -15,6 +15,8 @@ const paths = [
   "/blog/python-dict-to-json",
   "/blog/json5-vs-json",
   "/blog/json-repair",
+  "/blog/convert-python-dict-to-json",
+  "/blog/json-formatter-mcp",
 ];
 
 async function submit(urlList) {
