@@ -9,6 +9,7 @@ import Json5VsJson from "../content/json5-vs-json";
 import JsonRepair from "../content/json-repair";
 import ConvertPythonDictToJson from "../content/convert-python-dict-to-json";
 import JsonFormatterMcp from "../content/json-formatter-mcp";
+import AiGeneratesBrokenJson from "../content/ai-generates-broken-json";
 
 const contentBySlug: Record<string, () => React.ReactElement> = {
   "json-formatter-comparison": () => <JsonFormatterComparison />,
@@ -18,6 +19,7 @@ const contentBySlug: Record<string, () => React.ReactElement> = {
   "json-repair": () => <JsonRepair />,
   "convert-python-dict-to-json": () => <ConvertPythonDictToJson />,
   "json-formatter-mcp": () => <JsonFormatterMcp />,
+  "ai-generates-broken-json": () => <AiGeneratesBrokenJson />,
 };
 
 export function generateStaticParams() {

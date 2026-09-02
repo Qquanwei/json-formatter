@@ -97,6 +97,60 @@ export default function Home() {
         <JsonFormatter />
       </section>
 
+      {/* More tools */}
+      <section className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+          More JSON tools
+        </h2>
+        <div className="mt-5 grid gap-4 md:grid-cols-3">
+          <Link
+            href="/python-dict-to-json"
+            className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-indigo-300 dark:border-slate-700/60 dark:bg-slate-900 dark:hover:border-indigo-700"
+          >
+            <h3 className="font-semibold text-slate-900 dark:text-white">
+              Python Dict → JSON
+            </h3>
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
+              Convert Python dicts with single quotes, None/True/False, and
+              tuples into clean JSON.
+            </p>
+            <span className="mt-4 inline-block text-sm font-medium text-indigo-600 group-hover:underline dark:text-indigo-400">
+              Convert →
+            </span>
+          </Link>
+          <Link
+            href="/json-repair"
+            className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-indigo-300 dark:border-slate-700/60 dark:bg-slate-900 dark:hover:border-indigo-700"
+          >
+            <h3 className="font-semibold text-slate-900 dark:text-white">
+              JSON Repair
+            </h3>
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
+              Fix broken JSON — missing quotes, missing commas, and unclosed
+              brackets.
+            </p>
+            <span className="mt-4 inline-block text-sm font-medium text-indigo-600 group-hover:underline dark:text-indigo-400">
+              Repair →
+            </span>
+          </Link>
+          <Link
+            href="/blog/json-formatter-mcp"
+            className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-indigo-300 dark:border-slate-700/60 dark:bg-slate-900 dark:hover:border-indigo-700"
+          >
+            <h3 className="font-semibold text-slate-900 dark:text-white">
+              MCP Server
+            </h3>
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
+              Format and repair JSON from Claude, Cursor, or any MCP-capable
+              client.
+            </p>
+            <span className="mt-4 inline-block text-sm font-medium text-indigo-600 group-hover:underline dark:text-indigo-400">
+              Learn more →
+            </span>
+          </Link>
+        </div>
+      </section>
+
       {/* Features */}
       <section className="mx-auto w-full max-w-6xl px-4 pb-16 sm:px-6">
         <div className="grid gap-4 md:grid-cols-3">
@@ -129,6 +183,70 @@ export default function Home() {
               None/True/False — and normalize it into strict,
               standards-compliant JSON.
             </p>
+          </div>
+        </div>
+
+        {/* Accepts */}
+        <h2 className="mt-14 text-2xl font-bold text-slate-900 dark:text-white">
+          Accepts more than JSON
+        </h2>
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-400">
+          Most tools only take strict JSON. JSONGuy handles the syntax people
+          actually write — and normalizes it all into clean, standards-compliant
+          JSON.
+        </p>
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700/60 dark:bg-slate-900">
+            <h3 className="font-semibold text-slate-900 dark:text-white">
+              JSON5 &amp; JS objects
+            </h3>
+            <pre className="mt-3 overflow-x-auto rounded-lg bg-slate-50 p-3 font-mono text-xs leading-6 text-slate-700 dark:bg-slate-800/50 dark:text-slate-300">{`{
+  name: 'John', // comment
+  skills: ['js', 'react',],
+}`}</pre>
+            <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
+              Unquoted keys, single quotes, comments, and trailing commas.
+            </p>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700/60 dark:bg-slate-900">
+            <h3 className="font-semibold text-slate-900 dark:text-white">
+              Python dicts
+            </h3>
+            <pre className="mt-3 overflow-x-auto rounded-lg bg-slate-50 p-3 font-mono text-xs leading-6 text-slate-700 dark:bg-slate-800/50 dark:text-slate-300">{`{
+  'active': True,
+  'nickname': None,
+  'tags': ('a', 'b'),
+}`}</pre>
+            <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
+              None/True/False and tuples are converted to JSON equivalents.
+            </p>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700/60 dark:bg-slate-900">
+            <h3 className="font-semibold text-slate-900 dark:text-white">
+              Broken JSON
+            </h3>
+            <pre className="mt-3 overflow-x-auto rounded-lg bg-slate-50 p-3 font-mono text-xs leading-6 text-slate-700 dark:bg-slate-800/50 dark:text-slate-300">{`{
+  name: John,
+  city: New York
+}`}</pre>
+            <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
+              Missing quotes and commas get repaired automatically.
+            </p>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700/60 dark:bg-slate-900">
+            <h3 className="font-semibold text-slate-900 dark:text-white">
+              From any AI client
+            </h3>
+            <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
+              Connect the MCP server and let your agent format, validate, or
+              repair JSON without leaving the conversation.
+            </p>
+            <Link
+              href="/blog/json-formatter-mcp"
+              className="mt-4 inline-block text-sm font-medium text-indigo-600 hover:underline dark:text-indigo-400"
+            >
+              Read the MCP guide →
+            </Link>
           </div>
         </div>
 

@@ -7,6 +7,13 @@ export interface PostMeta {
 
 export const posts: PostMeta[] = [
   {
+    slug: "ai-generates-broken-json",
+    title: "AI keeps generating broken JSON — here's why and how to fix it",
+    description:
+      "Truncation, missing commas, extra text, unescaped quotes — LLMs produce invalid JSON constantly. Here's why, and the validate-then-repair pattern that fixes it.",
+    date: "2026-08-31",
+  },
+  {
     slug: "json-formatter-mcp",
     title: "JSONGuy now has an MCP server: format and repair JSON from any AI client",
     description:
