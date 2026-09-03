@@ -7,6 +7,13 @@ export interface PostMeta {
 
 export const posts: PostMeta[] = [
   {
+    slug: "what-is-json5",
+    title: "What is JSON5? Why it exists, what it fixes, and where it's supported",
+    description:
+      "JSON is strict; JSON5 is JSON for humans. The full story of why it appeared, the problems it solved, how it compares to JSON, and its support today.",
+    date: "2026-09-03",
+  },
+  {
     slug: "ai-generates-broken-json",
     title: "AI keeps generating broken JSON — here's why and how to fix it",
     description:

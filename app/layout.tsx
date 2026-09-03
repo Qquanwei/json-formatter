@@ -162,12 +162,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               >
                 Formatter
               </Link>
-              <a
-                href="#faq"
-                className="rounded-md px-3 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
-              >
-                FAQ
-              </a>
               <Link
                 href="/blog"
                 className="rounded-md px-3 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"

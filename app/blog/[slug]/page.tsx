@@ -10,6 +10,7 @@ import JsonRepair from "../content/json-repair";
 import ConvertPythonDictToJson from "../content/convert-python-dict-to-json";
 import JsonFormatterMcp from "../content/json-formatter-mcp";
 import AiGeneratesBrokenJson from "../content/ai-generates-broken-json";
+import WhatIsJson5 from "../content/what-is-json5";
 
 const contentBySlug: Record<string, () => React.ReactElement> = {
   "json-formatter-comparison": () => <JsonFormatterComparison />,
@@ -20,6 +21,7 @@ const contentBySlug: Record<string, () => React.ReactElement> = {
   "convert-python-dict-to-json": () => <ConvertPythonDictToJson />,
   "json-formatter-mcp": () => <JsonFormatterMcp />,
   "ai-generates-broken-json": () => <AiGeneratesBrokenJson />,
+  "what-is-json5": () => <WhatIsJson5 />,
 };
 
 export function generateStaticParams() {
@@ -60,7 +62,7 @@ export default async function BlogPost({
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
       <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-10">
-        <div>
+        <div className="bg-white p-6 dark:bg-slate-900 sm:p-10">
           <Link
             href="/blog"
             className="text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
@@ -77,7 +79,7 @@ export default async function BlogPost({
         </div>
 
         <aside className="mt-12 lg:mt-0">
-          <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+          <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
             More posts
           </h2>
           <ul className="mt-3 space-y-4">
@@ -85,7 +87,7 @@ export default async function BlogPost({
               <li key={p.slug}>
                 <Link
                   href={`/blog/${p.slug}`}
-                  className="text-sm text-slate-700 hover:underline dark:text-slate-300"
+                  className="text-sm text-slate-700 hover:underline"
                 >
                   {p.title}
                 </Link>
