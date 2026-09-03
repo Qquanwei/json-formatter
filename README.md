@@ -61,3 +61,7 @@ npm run indexnow # submit URLs to IndexNow (Bing/Yandex/Naver)
 - [json5](https://github.com/json5/json5) — relaxed JSON parsing
 - [jsonrepair](https://github.com/josdejong/jsonrepair) — broken JSON repair
 - Tailwind CSS v4
+
+## License
+
+[MIT](LICENSE)
