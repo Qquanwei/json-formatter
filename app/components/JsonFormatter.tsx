@@ -11,6 +11,7 @@ import {
   Download,
   Eraser,
   ListTree,
+  Share2,
   Sparkles,
   Wrench,
   XCircle,
@@ -85,6 +86,7 @@ export default function JsonFormatter({
   const [error, setError] = useState<string | null>(null);
   const [status, setStatus] = useState<"idle" | "valid" | "invalid">("idle");
   const [copied, setCopied] = useState(false);
+  const [shared, setShared] = useState(false);
   const [indent, setIndent] = useState<2 | 4>(2);
   const [sortKeys, setSortKeys] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -179,6 +181,26 @@ export default function JsonFormatter({
     a.download = "formatted.json";
     a.click();
     URL.revokeObjectURL(url);
+  };
+
+  const share = async () => {
+    const text = output || input;
+    if (!text) return;
+    try {
+      const res = await fetch("/api/share", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.id) throw new Error(data.error ?? "share failed");
+      const url = `${window.location.origin}/share/${data.id}`;
+      await navigator.clipboard.writeText(url);
+      setShared(true);
+      setTimeout(() => setShared(false), 1500);
+    } catch {
+      /* ignore */
+    }
   };
 
   const clear = () => {
@@ -331,6 +353,18 @@ export default function JsonFormatter({
                 >
                   <Download className="h-3.5 w-3.5" />
                   Download
+                </button>
+                <button
+                  type="button"
+                  onClick={share}
+                  className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium text-slate-600 transition hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
+                >
+                  {shared ? (
+                    <Check className="h-3.5 w-3.5 text-emerald-500" />
+                  ) : (
+                    <Share2 className="h-3.5 w-3.5" />
+                  )}
+                  {shared ? "Copied link" : "Share"}
                 </button>
                 <div className="flex items-center gap-1 rounded-lg border border-slate-200 p-0.5 dark:border-slate-700">
                   <button
