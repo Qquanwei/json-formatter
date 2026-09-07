@@ -1,0 +1,94 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "JSONGuy Share API",
+    "description": "Create and retrieve shareable JSON snippets. Every share returns a short URL like https://jsonguy.airankone.com/share/Abc123xy.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://jsonguy.airankone.com"
+    }
+  ],
+  "paths": {
+    "/api/share": {
+      "post": {
+        "summary": "Create a share",
+        "operationId": "createShare",
+        "description": "Store a JSON snippet and return a shareable id and URL.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["text"],
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "description": "The JSON (or JSON5, JavaScript object, or Python dict) to share. Max 200KB."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Share created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string", "description": "Short share id." },
+                    "url": { "type": "string", "description": "Full share URL." }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing or empty text"
+          },
+          "413": {
+            "description": "Text exceeds 200KB"
+          }
+        }
+      }
+    },
+    "/api/share/{id}": {
+      "get": {
+        "summary": "Retrieve a share",
+        "operationId": "getShare",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The shared snippet",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "data": { "type": "string", "description": "The stored JSON text." }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Share not found"
+          }
+        }
+      }
+    }
+  }
+}

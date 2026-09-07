@@ -19,6 +19,7 @@ const paths = [
   "/blog/json-formatter-mcp",
   "/blog/ai-generates-broken-json",
   "/blog/what-is-json5",
+  "/blog/json-share-api",
 ];
 
 async function submit(urlList) {

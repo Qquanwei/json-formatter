@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { beautify, parseJson, repairJson, sortValue } from "../lib/json";
+import { createShare, shareUrl } from "../lib/share";
 
 const SERVER_INFO = { name: "jsonguy", version: "1.0.0" };
 const PROTOCOL_VERSION = "2024-11-05";
@@ -55,6 +56,18 @@ const tools = [
       required: ["text"],
     },
   },
+  {
+    name: "share_json",
+    description:
+      "Store a JSON snippet and return a shareable URL that anyone can open.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        text: { type: "string", description: "The JSON to share." },
+      },
+      required: ["text"],
+    },
+  },
 ];
 
 function textResult(text: string, isError = false) {
@@ -93,6 +106,16 @@ function callTool(name: string, args: Record<string, unknown>) {
       const r = repairJson(text);
       if (!r.ok) return textResult(`Could not repair: ${r.message}`, true);
       return textResult(beautify(r.value, 2));
+    }
+    case "share_json": {
+      return createShare(text).then(
+        (id) => textResult(shareUrl(id)),
+        (err: unknown) =>
+          textResult(
+            `Share failed: ${err instanceof Error ? err.message : "unknown error"}`,
+            true,
+          ),
+      );
     }
     default:
       return textResult(`Unknown tool: ${name}`, true);
@@ -139,7 +162,7 @@ export async function POST(request: NextRequest) {
         capabilities: { tools: {} },
         serverInfo: SERVER_INFO,
         instructions:
-          "Format, validate, and repair JSON. Accepts JSON5, JavaScript objects, and Python dicts.",
+          "Format, validate, repair, and share JSON. Accepts JSON5, JavaScript objects, and Python dicts.",
       },
     });
     res.headers.set("Mcp-Session-Id", randomUUID());
@@ -170,7 +193,7 @@ export async function POST(request: NextRequest) {
     return jsonResponse({
       jsonrpc: "2.0",
       id,
-      result: callTool(p.name, p.arguments ?? {}),
+      result: await callTool(p.name, p.arguments ?? {}),
     });
   }
 

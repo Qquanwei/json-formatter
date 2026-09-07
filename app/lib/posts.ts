@@ -7,6 +7,13 @@ export interface PostMeta {
 
 export const posts: PostMeta[] = [
   {
+    slug: "json-share-api",
+    title: "Share JSON with a link: JSONGuy's share feature, REST API, and MCP tool",
+    description:
+      "JSONGuy can now share JSON as a read-only link, via the UI, a documented REST API, and an MCP tool.",
+    date: "2026-09-07",
+  },
+  {
     slug: "what-is-json5",
     title: "What is JSON5? Why it exists, what it fixes, and where it's supported",
     description:
