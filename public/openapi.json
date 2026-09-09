@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "JSONGuy Share API",
-    "description": "Create and retrieve shareable JSON snippets. Every share returns a short URL like https://jsonguy.airankone.com/share/Abc123xy.",
+    "title": "JSONGuy API",
+    "description": "Share JSON snippets and publish static HTML pages. Each action returns a short URL: https://jsonguy.airankone.com/share/{id} for JSON, https://jsonguy.airankone.com/p/{id} for HTML.",
     "version": "1.0.0"
   },
   "servers": [
@@ -13,9 +13,8 @@
   "paths": {
     "/api/share": {
       "post": {
-        "summary": "Create a share",
+        "summary": "Create a JSON share",
         "operationId": "createShare",
-        "description": "Store a JSON snippet and return a shareable id and URL.",
         "requestBody": {
           "required": true,
           "content": {
@@ -41,33 +40,24 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "id": { "type": "string", "description": "Short share id." },
-                    "url": { "type": "string", "description": "Full share URL." }
+                    "id": { "type": "string" },
+                    "url": { "type": "string" }
                   }
                 }
               }
             }
           },
-          "400": {
-            "description": "Missing or empty text"
-          },
-          "413": {
-            "description": "Text exceeds 200KB"
-          }
+          "400": { "description": "Missing or empty text" },
+          "413": { "description": "Text exceeds 200KB" }
         }
       }
     },
     "/api/share/{id}": {
       "get": {
-        "summary": "Retrieve a share",
+        "summary": "Retrieve a JSON share",
         "operationId": "getShare",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": { "type": "string" }
-          }
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
         ],
         "responses": {
           "200": {
@@ -78,15 +68,80 @@
                   "type": "object",
                   "properties": {
                     "id": { "type": "string" },
-                    "data": { "type": "string", "description": "The stored JSON text." }
+                    "data": { "type": "string" }
                   }
                 }
               }
             }
           },
-          "404": {
-            "description": "Share not found"
+          "404": { "description": "Share not found" }
+        }
+      }
+    },
+    "/api/publish": {
+      "post": {
+        "summary": "Publish a static HTML page",
+        "operationId": "createPublish",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["html"],
+                "properties": {
+                  "html": {
+                    "type": "string",
+                    "description": "The HTML to publish. Max 200KB. Rendered in a sandboxed iframe."
+                  }
+                }
+              }
+            }
           }
+        },
+        "responses": {
+          "200": {
+            "description": "Page published",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "url": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": { "description": "Missing or empty HTML" },
+          "413": { "description": "HTML exceeds 200KB" }
+        }
+      }
+    },
+    "/api/publish/{id}": {
+      "get": {
+        "summary": "Retrieve a published page",
+        "operationId": "getPublish",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "The published HTML",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "html": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "404": { "description": "Page not found" }
         }
       }
     }

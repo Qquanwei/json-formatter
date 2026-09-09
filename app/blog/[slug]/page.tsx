@@ -12,6 +12,7 @@ import JsonFormatterMcp from "../content/json-formatter-mcp";
 import AiGeneratesBrokenJson from "../content/ai-generates-broken-json";
 import WhatIsJson5 from "../content/what-is-json5";
 import JsonShareApi from "../content/json-share-api";
+import PublishHtml from "../content/publish-html";
 
 const contentBySlug: Record<string, () => React.ReactElement> = {
   "json-formatter-comparison": () => <JsonFormatterComparison />,
@@ -24,6 +25,7 @@ const contentBySlug: Record<string, () => React.ReactElement> = {
   "ai-generates-broken-json": () => <AiGeneratesBrokenJson />,
   "what-is-json5": () => <WhatIsJson5 />,
   "json-share-api": () => <JsonShareApi />,
+  "publish-html": () => <PublishHtml />,
 };
 
 export function generateStaticParams() {

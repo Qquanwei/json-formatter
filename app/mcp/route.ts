@@ -2,6 +2,7 @@ import { randomUUID } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { beautify, parseJson, repairJson, sortValue } from "../lib/json";
 import { createShare, shareUrl } from "../lib/share";
+import { createPublish, publishUrl } from "../lib/publish";
 
 const SERVER_INFO = { name: "jsonguy", version: "1.0.0" };
 const PROTOCOL_VERSION = "2024-11-05";
@@ -68,6 +69,18 @@ const tools = [
       required: ["text"],
     },
   },
+  {
+    name: "publish_html",
+    description:
+      "Publish a static HTML page and return a shareable URL that renders it.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        html: { type: "string", description: "The HTML to publish." },
+      },
+      required: ["html"],
+    },
+  },
 ];
 
 function textResult(text: string, isError = false) {
@@ -117,6 +130,17 @@ function callTool(name: string, args: Record<string, unknown>) {
           ),
       );
     }
+    case "publish_html": {
+      const html = typeof args.html === "string" ? args.html : "";
+      return createPublish(html).then(
+        (id) => textResult(publishUrl(id)),
+        (err: unknown) =>
+          textResult(
+            `Publish failed: ${err instanceof Error ? err.message : "unknown error"}`,
+            true,
+          ),
+      );
+    }
     default:
       return textResult(`Unknown tool: ${name}`, true);
   }
@@ -162,7 +186,7 @@ export async function POST(request: NextRequest) {
         capabilities: { tools: {} },
         serverInfo: SERVER_INFO,
         instructions:
-          "Format, validate, repair, and share JSON. Accepts JSON5, JavaScript objects, and Python dicts.",
+          "Format, validate, repair, share, and publish JSON and HTML. Accepts JSON5, JavaScript objects, and Python dicts.",
       },
     });
     res.headers.set("Mcp-Session-Id", randomUUID());

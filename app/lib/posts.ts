@@ -7,6 +7,13 @@ export interface PostMeta {
 
 export const posts: PostMeta[] = [
   {
+    slug: "publish-html",
+    title: "Publish a static HTML page in seconds — JSONGuy's HTML hosting",
+    description:
+      "JSONGuy now hosts static HTML. Paste a page, publish it to a link, and it renders in a sandboxed iframe — via the UI, a REST API, or an MCP tool.",
+    date: "2026-09-07",
+  },
+  {
     slug: "json-share-api",
     title: "Share JSON with a link: JSONGuy's share feature, REST API, and MCP tool",
     description:
