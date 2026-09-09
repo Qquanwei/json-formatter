@@ -1,4 +1,4 @@
-import WebGpuBackground from "../components/WebGpuBackground";
+import WebGpuBackground from "../../components/WebGpuBackground";
 
 export default function BlogLayout({
   children,

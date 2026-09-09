@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import JsonFormatter from "../components/JsonFormatter";
-import { SITE_NAME } from "../lib/site";
+import JsonFormatter from "../../components/JsonFormatter";
+import { SITE_NAME } from "../../lib/site";
 
 export const metadata: Metadata = {
   title: "Python Dict to JSON Converter",

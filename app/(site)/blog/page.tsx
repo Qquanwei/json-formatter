@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { posts } from "../lib/posts";
-import { SITE_NAME } from "../lib/site";
+import { posts } from "../../lib/posts";
+import { SITE_NAME } from "../../lib/site";
 
 export const metadata: Metadata = {
   title: "Blog",

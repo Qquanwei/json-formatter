@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import SharedJsonViewer from "../../components/SharedJsonViewer";
-import { beautify, parseJson } from "../../lib/json";
-import { getShare } from "../../lib/share";
-import { SITE_NAME } from "../../lib/site";
+import SharedJsonViewer from "../../../components/SharedJsonViewer";
+import { beautify, parseJson } from "../../../lib/json";
+import { getShare } from "../../../lib/share";
+import { SITE_NAME } from "../../../lib/site";
 
 export const metadata: Metadata = {
   title: "Shared JSON",

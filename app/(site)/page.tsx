@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import JsonFormatter from "./components/JsonFormatter";
-import { SITE_NAME } from "./lib/site";
-import heroImg from "../hero.jpeg";
+import JsonFormatter from "../components/JsonFormatter";
+import { SITE_NAME } from "../lib/site";
+import heroImg from "../../hero.jpeg";
 
 const faqs = [
   {

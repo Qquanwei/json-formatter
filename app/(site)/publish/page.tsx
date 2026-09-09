@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import HtmlPublisher from "../components/HtmlPublisher";
+import HtmlPublisher from "../../components/HtmlPublisher";
 
 export const metadata: Metadata = {
   title: "HTML Publisher — Host Static HTML",

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getPost, posts } from "../../lib/posts";
+import { getPost, posts } from "../../../lib/posts";
 import JsonFormatterComparison from "../content/json-formatter-comparison";
 import HandlingNonStandardJson from "../content/handling-non-standard-json";
 import PythonDictToJson from "../content/python-dict-to-json";
