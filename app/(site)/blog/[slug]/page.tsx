@@ -14,6 +14,7 @@ import WhatIsJson5 from "../content/what-is-json5";
 import JsonShareApi from "../content/json-share-api";
 import PublishHtml from "../content/publish-html";
 import DouyinViralMcp from "../content/douyin-viral-mcp";
+import BestJsonFormatter from "../content/best-json-formatter";
 
 const contentBySlug: Record<string, () => React.ReactElement> = {
   "json-formatter-comparison": () => <JsonFormatterComparison />,
@@ -28,6 +29,7 @@ const contentBySlug: Record<string, () => React.ReactElement> = {
   "json-share-api": () => <JsonShareApi />,
   "publish-html": () => <PublishHtml />,
   "douyin-viral-content-mcp": () => <DouyinViralMcp />,
+  "best-json-formatter": () => <BestJsonFormatter />,
 };
 
 export function generateStaticParams() {

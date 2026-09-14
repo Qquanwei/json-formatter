@@ -7,6 +7,13 @@ export interface PostMeta {
 
 export const posts: PostMeta[] = [
   {
+    slug: "best-json-formatter",
+    title: "The best JSON formatter: how to pick one that handles JSON5, Python, and broken JSON",
+    description:
+      "Most JSON formatters reject anything that isn't strict JSON. Here's what actually makes a formatter good in 2026, and where JSONGuy fits.",
+    date: "2026-09-14",
+  },
+  {
     slug: "douyin-viral-content-mcp",
     title: "抖音爆款内容 MCP：像做 SEO 一样，既帮你选题，又帮你拆爆款结构",
     description:
