@@ -73,6 +73,12 @@ export default function SiteLayout({
               >
                 Blog
               </Link>
+              <Link
+                href="/about"
+                className="hover:text-slate-700 dark:hover:text-slate-200"
+              >
+                About
+              </Link>
             </nav>
           </div>
           <a
