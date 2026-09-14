@@ -7,6 +7,13 @@ export interface PostMeta {
 
 export const posts: PostMeta[] = [
   {
+    slug: "douyin-viral-content-mcp",
+    title: "抖音爆款内容 MCP：像做 SEO 一样，既帮你选题，又帮你拆爆款结构",
+    description:
+      "帮助抖音创作者找趋势、拆爆款结构的 MCP——像 SEO 找词一样做内容选题，并用 JSONGuy 把内容聚合成 JSON 给 AI agent 使用。",
+    date: "2026-09-07",
+  },
+  {
     slug: "publish-html",
     title: "Publish a static HTML page in seconds — JSONGuy's HTML hosting",
     description:

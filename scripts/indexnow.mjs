@@ -21,6 +21,7 @@ const paths = [
   "/blog/what-is-json5",
   "/blog/json-share-api",
   "/blog/publish-html",
+  "/blog/douyin-viral-content-mcp",
 ];
 
 async function submit(urlList) {
