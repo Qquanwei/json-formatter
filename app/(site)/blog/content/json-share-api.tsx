@@ -96,7 +96,7 @@ export default function ShareJson() {
         If you use Claude, Cursor, or any MCP client, the share capability is
         now the fourth tool on the{" "}
         <Link
-          href="/blog/json-formatter-mcp"
+          href="/about"
           className="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
         >
           JSONGuy MCP server

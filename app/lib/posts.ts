@@ -7,6 +7,13 @@ export interface PostMeta {
 
 export const posts: PostMeta[] = [
   {
+    slug: "json-vs-yaml-vs-toml",
+    title: "JSON vs YAML vs TOML: which config format should you use?",
+    description:
+      "JSON, YAML, and TOML all store the same data differently. A practical comparison of the three — and when each one is the right pick.",
+    date: "2026-09-14",
+  },
+  {
     slug: "best-json-formatter",
     title: "The best JSON formatter: how to pick one that handles JSON5, Python, and broken JSON",
     description:
@@ -35,53 +42,11 @@ export const posts: PostMeta[] = [
     date: "2026-09-07",
   },
   {
-    slug: "what-is-json5",
-    title: "What is JSON5? Why it exists, what it fixes, and where it's supported",
-    description:
-      "JSON is strict; JSON5 is JSON for humans. The full story of why it appeared, the problems it solved, how it compares to JSON, and its support today.",
-    date: "2026-09-03",
-  },
-  {
-    slug: "ai-generates-broken-json",
-    title: "AI keeps generating broken JSON — here's why and how to fix it",
-    description:
-      "Truncation, missing commas, extra text, unescaped quotes — LLMs produce invalid JSON constantly. Here's why, and the validate-then-repair pattern that fixes it.",
-    date: "2026-08-31",
-  },
-  {
-    slug: "json-formatter-mcp",
-    title: "JSONGuy now has an MCP server: format and repair JSON from any AI client",
-    description:
-      "Connect JSONGuy's formatter, validator, and repair tools to Claude, Cursor, or any MCP client via a single HTTP endpoint.",
-    date: "2026-08-31",
-  },
-  {
-    slug: "convert-python-dict-to-json",
-    title: "How to convert a Python dict to JSON (the code way and the no-code way)",
-    description:
-      "json.dumps in a script, or paste it into a converter — here are both ways to turn a Python dict into JSON, plus the edge cases like tuples and non-string keys.",
-    date: "2026-08-31",
-  },
-  {
     slug: "json-repair",
     title: "JSON repair: fixing the JSON that tools reject",
     description:
       "Missing quotes, missing commas, unclosed brackets — here are the common ways JSON breaks and how to fix it automatically.",
     date: "2026-08-27",
-  },
-  {
-    slug: "json5-vs-json",
-    title: "JSON5 vs JSON: what's different and why it matters",
-    description:
-      "Unquoted keys, single quotes, comments, trailing commas — JSON5 loosens JSON for humans. Here's what it changes and how JSONGuy handles it.",
-    date: "2026-08-27",
-  },
-  {
-    slug: "python-dict-to-json",
-    title: "Python dict to JSON: why it breaks and how to convert it",
-    description:
-      "Single quotes, None/True/False, tuples, trailing commas — a Python dict isn't valid JSON. Here's what breaks and how to convert it without manual cleanup.",
-    date: "2026-08-25",
   },
   {
     slug: "handling-non-standard-json",

@@ -4,32 +4,22 @@ import Link from "next/link";
 import { getPost, posts } from "../../../lib/posts";
 import JsonFormatterComparison from "../content/json-formatter-comparison";
 import HandlingNonStandardJson from "../content/handling-non-standard-json";
-import PythonDictToJson from "../content/python-dict-to-json";
-import Json5VsJson from "../content/json5-vs-json";
 import JsonRepair from "../content/json-repair";
-import ConvertPythonDictToJson from "../content/convert-python-dict-to-json";
-import JsonFormatterMcp from "../content/json-formatter-mcp";
-import AiGeneratesBrokenJson from "../content/ai-generates-broken-json";
-import WhatIsJson5 from "../content/what-is-json5";
 import JsonShareApi from "../content/json-share-api";
 import PublishHtml from "../content/publish-html";
 import DouyinViralMcp from "../content/douyin-viral-mcp";
 import BestJsonFormatter from "../content/best-json-formatter";
+import JsonVsYamlVsToml from "../content/json-vs-yaml-vs-toml";
 
 const contentBySlug: Record<string, () => React.ReactElement> = {
   "json-formatter-comparison": () => <JsonFormatterComparison />,
   "handling-non-standard-json": () => <HandlingNonStandardJson />,
-  "python-dict-to-json": () => <PythonDictToJson />,
-  "json5-vs-json": () => <Json5VsJson />,
   "json-repair": () => <JsonRepair />,
-  "convert-python-dict-to-json": () => <ConvertPythonDictToJson />,
-  "json-formatter-mcp": () => <JsonFormatterMcp />,
-  "ai-generates-broken-json": () => <AiGeneratesBrokenJson />,
-  "what-is-json5": () => <WhatIsJson5 />,
   "json-share-api": () => <JsonShareApi />,
   "publish-html": () => <PublishHtml />,
   "douyin-viral-content-mcp": () => <DouyinViralMcp />,
   "best-json-formatter": () => <BestJsonFormatter />,
+  "json-vs-yaml-vs-toml": () => <JsonVsYamlVsToml />,
 };
 
 export function generateStaticParams() {

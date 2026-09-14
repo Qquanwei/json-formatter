@@ -110,7 +110,7 @@ export default function PublishHtml() {
       <p>
         The{" "}
         <Link
-          href="/blog/json-formatter-mcp"
+          href="/about"
           className="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
         >
           JSONGuy MCP server

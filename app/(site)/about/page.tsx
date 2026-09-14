@@ -106,15 +106,6 @@ export default function AboutPage() {
         </li>
         <li>
           <Link
-            href="/python-dict-to-json"
-            className="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
-          >
-            Python Dict to JSON
-          </Link>{" "}
-          — convert Python dicts to JSON.
-        </li>
-        <li>
-          <Link
             href="/json-repair"
             className="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
           >
@@ -132,12 +123,9 @@ export default function AboutPage() {
           — host static HTML pages.
         </li>
         <li>
-          <Link
-            href="/blog/json-formatter-mcp"
-            className="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
-          >
+          <span className="font-medium text-slate-900 dark:text-white">
             MCP server
-          </Link>{" "}
+          </span>{" "}
           — format and repair JSON from AI clients.
         </li>
       </ul>

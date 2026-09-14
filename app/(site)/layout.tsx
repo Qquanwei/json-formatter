@@ -15,12 +15,6 @@ export default function SiteLayout({
           </Link>
           <nav className="flex items-center gap-1 text-sm">
             <Link
-              href="/python-dict-to-json"
-              className="rounded-md px-3 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
-            >
-              Python → JSON
-            </Link>
-            <Link
               href="/json-repair"
               className="rounded-md px-3 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
             >
@@ -61,12 +55,6 @@ export default function SiteLayout({
               sign-up, 100% client-side.
             </p>
             <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs lg:justify-start">
-              <Link
-                href="/python-dict-to-json"
-                className="hover:text-slate-700 dark:hover:text-slate-200"
-              >
-                Python Dict to JSON
-              </Link>
               <Link
                 href="/blog"
                 className="hover:text-slate-700 dark:hover:text-slate-200"

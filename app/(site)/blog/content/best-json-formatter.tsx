@@ -181,7 +181,7 @@ export default function BestJsonFormatter() {
           </strong>{" "}
           A web tool, a{" "}
           <Link
-            href="/blog/json-formatter-mcp"
+            href="/about"
             className="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
           >
             MCP server

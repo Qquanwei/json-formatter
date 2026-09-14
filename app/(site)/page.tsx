@@ -32,8 +32,8 @@ const faqs = [
   {
     q: "Does JSONGuy have an MCP server?",
     a: "Yes. Connect JSONGuy's formatter, validator, and repair tools to Claude, Cursor, or any MCP client. It accepts the same inputs as the web tool — JSON, JSON5, JavaScript objects, and Python dicts — and can repair broken JSON.",
-    linkHref: "/blog/json-formatter-mcp",
-    linkText: "Read the MCP guide",
+    linkHref: "/about",
+    linkText: "Learn more about JSONGuy",
   },
 ];
 
@@ -104,18 +104,17 @@ export default function Home() {
         </h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <Link
-            href="/python-dict-to-json"
+            href="/publish"
             className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-indigo-300 dark:border-slate-700/60 dark:bg-slate-900 dark:hover:border-indigo-700"
           >
             <h3 className="font-semibold text-slate-900 dark:text-white">
-              Python Dict → JSON
+              HTML Publisher
             </h3>
             <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
-              Convert Python dicts with single quotes, None/True/False, and
-              tuples into clean JSON.
+              Host a static HTML page and get a shareable link in seconds.
             </p>
             <span className="mt-4 inline-block text-sm font-medium text-indigo-600 group-hover:underline dark:text-indigo-400">
-              Convert →
+              Publish →
             </span>
           </Link>
           <Link
@@ -134,7 +133,7 @@ export default function Home() {
             </span>
           </Link>
           <Link
-            href="/blog/json-formatter-mcp"
+            href="/about"
             className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-indigo-300 dark:border-slate-700/60 dark:bg-slate-900 dark:hover:border-indigo-700"
           >
             <h3 className="font-semibold text-slate-900 dark:text-white">
@@ -242,10 +241,10 @@ export default function Home() {
               repair JSON without leaving the conversation.
             </p>
             <Link
-              href="/blog/json-formatter-mcp"
+              href="/about"
               className="mt-4 inline-block text-sm font-medium text-indigo-600 hover:underline dark:text-indigo-400"
             >
-              Read the MCP guide →
+              Learn more →
             </Link>
           </div>
         </div>
